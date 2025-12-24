@@ -1,89 +1,149 @@
-import Image from 'next/image';
-
-export default function Home() {
-  const catalysts = [
-    {
-      title: "Driverless Robotaxi Expansion",
-      description: "Fully unsupervised rides scaling in Austin and new cities — trillion-dollar opportunity unlocking.",
-      date: "December 2025",
-    },
-    {
-      title: "FSD v14.2+ Rollout",
-      description: "Smoother performance, outperforming competitors in real-world tests.",
-      date: "December 23, 2025",
-    },
-    {
-      title: "Optimus Factory Deployment",
-      description: "Thousands of humanoid robots active in factories. External sales planned for 2026.",
-      date: "December 2025",
-    },
-    {
-      title: "Energy Storage Records",
-      description: ">100% YoY growth in deployments, margins higher than automotive.",
-      date: "December 2025",
-    },
-    {
-      title: "TSLA Near All-Time Highs",
-      description: "Trading ~$485–490. Analysts targets $500–600+ on autonomy & robotics.",
-      date: "December 24, 2025",
-    },
-  ];
-
-  return (
-    <main className="bg-black text-white">
-      {/* Hero with Optimus */}
-      <section className="relative h-screen w-full">
-        <Image
-          src="/optimus-hero.jpg"
-          alt="Optimus exiting Cybertruck"
-          fill
-          priority
-          className="object-cover brightness-50"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
-          <h1 className="mb-6 text-5xl font-bold text-red-500 drop-shadow-2xl md:text-8xl">
-            TeslaBullFeed
-          </h1>
-          <p className="mb-8 text-2xl drop-shadow-lg md:text-4xl">
-            Daily Dose of TSLA Bull Catalysts
-          </p>
-          <p className="text-xl drop-shadow-lg md:text-3xl">
-            🚀 No FUD, Only Moon 🌕
-          </p>
-        </div>
-      </section>
-
-      {/* TSLA Live Chart – простой iframe */}
-<section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
-  <h2 className="mb-10 text-center text-4xl font-bold text-red-500 md:text-6xl">
-    TSLA Live Chart
-  </h2>
-  <div className="w-full rounded-2xl overflow-hidden shadow-2xl" style={{ height: '800px' }}>
-    <iframe
-      src="https://www.tradingview.com/chart/?symbol=NASDAQ:TSLA&theme=Dark&interval=D"
-      width="100%"
-      height="100%"
-      frameBorder="0"
-      allowFullScreen
-    ></iframe>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Компактный чат</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f9f9fb;
+  }
+  header {
+    background: #202123;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  #chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+  }
+  .message {
+    max-width: 80%;
+    padding: 9px 12px;
+    border-radius: 12px;
+    line-height: 1.4;
+    font-size: 15px;
+    word-wrap: break-word;
+  }
+  .user {
+    align-self: flex-end;
+    background: #10a37f;
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  .bot {
+    align-self: flex-start;
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 4px;
+  }
+  #input-area {
+    flex-shrink: 0;
+    padding: 10px 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 8px;
+    align-items: end;
+  }
+  #message-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 15px;
+    resize: none;
+    min-height: 20px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  #send-btn {
+    background: #10a37f;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  #send-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+  <header>Чат с ИИ</header>
+  <div id="chat"></div>
+  <div id="input-area">
+    <textarea id="message-input" placeholder="Напишите сообщение..." rows="1"></textarea>
+    <button id="send-btn">➤</button>
   </div>
-</section>
 
-      {/* Latest Bull Catalysts */}
-      <section className="mx-auto max-w-6xl px-4 pb-32 pt-16 md:px-8">
-        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
-          Latest Bull Catalysts
-        </h2>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {catalysts.map((item, i) => (
-            <div key={i} className="rounded-2xl bg-gray-900 p-8 shadow-xl hover:shadow-red-500/50 transition">
-              <h3 className="mb-4 text-2xl font-bold text-red-400">{item.title}</h3>
-              <p className="mb-6 text-lg leading-relaxed">{item.description}</p>
-              <p className="text-sm text-gray-400">{item.date}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-}
+<script>
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('message-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Авторесайз textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+  });
+
+  // Отправка по Enter (без Shift)
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+
+    // Симуляция ответа бота
+    setTimeout(() => {
+      addMessage('Получил: «' + text + '». Чем ещё помочь?', 'bot');
+      sendBtn.disabled = false;
+    }, 800);
+  }
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = 'message ' + sender;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  // Приветствие
+  addMessage('Привет! Я готов помогать. Пиши коротко — отвечу компактно 😉', 'bot');
+</script>
+</body>
+</html>
