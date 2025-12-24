@@ -1,68 +1,75 @@
 import Image from 'next/image';
 
 export default function Home() {
-  const news = [
+  const catalysts = [
     {
-      title: "Driverless Robotaxi Testing in Austin",
-      desc: "Fully unsupervised rides expanding fleet. Musk: 'Unsupervised FSD pretty much solved!'",
+      title: "Driverless Robotaxi Expansion",
+      description: "Fully unsupervised rides in Austin and beyond. Fleet scaling rapidly – the multi-trillion dollar opportunity is unfolding.",
       date: "December 2025",
     },
     {
       title: "FSD v14.2+ Rollout",
-      desc: "Smoother performance, better obstacle recognition. Outperforming competitors in real-world tests.",
+      description: "Smoother than ever, outperforming competitors in real-world tests. Millions of miles of new data accelerating progress.",
       date: "December 23, 2025",
     },
     {
-      title: "Optimus in Factories",
-      desc: "Thousands of robots deployed, limited external sales planned for 2026. Trillion-dollar potential.",
+      title: "Optimus Factory Deployment",
+      description: "Thousands of humanoid robots now working in Tesla factories. External sales planned for 2026 – the robotics revolution begins.",
       date: "December 2025",
     },
     {
-      title: "Energy Storage Records",
-      desc: ">100% YoY growth in deployments, margins higher than auto business.",
+      title: "Energy Storage Record Growth",
+      description: "Deployments up >100% YoY with margins exceeding automotive. Megapack contracts flooding in worldwide.",
       date: "December 2025",
     },
     {
       title: "TSLA Near All-Time Highs",
-      desc: "Stock ~$485–490. Analysts bull targets $500–600+ on autonomy & robotics.",
+      description: "Stock trading ~$485–490. Analysts raising targets to $500–600+ on autonomy and robotics valuation unlock.",
       date: "December 24, 2025",
     },
   ];
 
   return (
-    <main className="flex min-h-screen flex-col bg-black text-white">
-      {/* Hero Section */}
-      <div className="relative w-full h-screen">
+    <main className="min-h-screen bg-black text-white">
+      {/* Hero Section with Optimus */}
+      <section className="relative h-screen w-full">
         <Image
           src="/optimus-hero.jpg"
-          alt="Optimus exiting Cybertruck"
+          alt="Optimus arriving to perform tasks – the future of autonomy and robotics"
           fill
-          className="object-cover brightness-50"
           priority
+          className="object-cover brightness-50"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-8">
-          <h1 className="text-5xl md:text-8xl font-bold mb-6 text-red-500 drop-shadow-2xl">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+          <h1 className="mb-6 text-5xl font-bold text-red-500 drop-shadow-2xl md:text-8xl">
             TeslaBullFeed
           </h1>
-          <p className="text-2xl md:text-4xl text-center mb-8 drop-shadow-lg">
+          <p className="mb-8 text-2xl drop-shadow-lg md:text-4xl">
             Daily Dose of TSLA Bull Catalysts
           </p>
-          <p className="text-xl md:text-3xl drop-shadow-lg">
+          <p className="text-xl drop-shadow-lg md:text-3xl">
             🚀 No FUD, Only Moon 🌕
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* News Feed */}
-      <section className="w-full max-w-6xl mx-auto px-8 py-20">
-        <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-red-500">
+      {/* News Feed Section */}
+      <section className="mx-auto max-w-6xl px-8 py-20">
+        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
           Latest Bull Catalysts
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {news.map((item, i) => (
-            <div key={i} className="bg-gray-900 p-8 rounded-xl shadow-2xl hover:shadow-red-500/50 transition">
-              <h3 className="text-2xl font-bold mb-4 text-red-400">{item.title}</h3>
-              <p className="text-lg mb-4">{item.desc}</p>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {catalysts.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-xl bg-gray-900 p-8 shadow-2xl transition hover:shadow-red-500/50"
+            >
+              <h3 className="mb-4 text-2xl font-bold text-red-400">
+                {item.title}
+              </h3>
+              <p className="mb-4 text-lg leading-relaxed">
+                {item.description}
+              </p>
               <p className="text-sm text-gray-400">{item.date}</p>
             </div>
           ))}
