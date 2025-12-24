@@ -14,45 +14,65 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white">
       {/* Hero with Optimus */}
       <section className="relative h-screen w-full">
-        <Image src="/optimus-hero.jpg" alt="Optimus" fill priority className="object-cover brightness-50" />
+        <Image
+          src="/optimus-hero.jpg"
+          alt="Optimus exiting Cybertruck"
+          fill
+          priority
+          className="object-cover brightness-50"
+        />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
-          <h1 className="mb-6 text-5xl font-bold text-red-500 drop-shadow-2xl md:text-8xl">TeslaBullFeed</h1>
-          <p className="mb-8 text-2xl drop-shadow-lg md:text-4xl">Daily Dose of TSLA Bull Catalysts</p>
-          <p className="text-xl drop-shadow-lg md:text-3xl">🚀 No FUD, Only Moon 🌕</p>
+          <h1 className="mb-6 text-5xl font-bold text-red-500 drop-shadow-2xl md:text-8xl">
+            TeslaBullFeed
+          </h1>
+          <p className="mb-8 text-2xl drop-shadow-lg md:text-4xl">
+            Daily Dose of TSLA Bull Catalysts
+          </p>
+          <p className="text-xl drop-shadow-lg md:text-3xl">
+            🚀 No FUD, Only Moon 🌕
+          </p>
         </div>
       </section>
 
-      {/* Live TSLA Chart */}
+      {/* Live TSLA Chart - увеличенная высота */}
       <section className="mx-auto max-w-7xl px-8 py-20">
-        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">TSLA Live Chart</h2>
-        <div className="h-96 md:h-screen/2 overflow-hidden rounded-xl bg-gray-900 shadow-2xl">
-          <div id="tradingview_chart" className="h-full"></div>
-          <Script
-            src="https://s3.tradingview.com/tv.js"
-            strategy="lazyOnload"
-            onLoad={() => {
-              new (window as any).TradingView.widget({
-                width: "100%",
-                height: "100%",
-                symbol: "NASDAQ:TSLA",
-                interval: "D",
-                timezone: "Etc/UTC",
-                theme: "dark",
-                style: "1",
-                locale: "en",
-                toolbar_bg: "#f1f3f6",
-                enable_publishing: false,
-                allow_symbol_change: true,
-                container_id: "tradingview_chart"
-              });
-            }}
-          />
+        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
+          TSLA Live Chart
+        </h2>
+        <div className="h-screen md:h-[800px] w-full rounded-xl bg-gray-900 shadow-2xl overflow-hidden">
+          <div className="tradingview-widget-container h-full">
+            <div className="tradingview-widget-container__widget h-full"></div>
+            <Script
+              id="tradingview-widget-script"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+              strategy="lazyOnload"
+            >
+              {`
+                {
+                  "width": "100%",
+                  "height": "100%",
+                  "symbol": "NASDAQ:TSLA",
+                  "interval": "D",
+                  "timezone": "Etc/UTC",
+                  "theme": "dark",
+                  "style": "1",
+                  "locale": "en",
+                  "toolbar_bg": "#f1f3f6",
+                  "enable_publishing": false,
+                  "allow_symbol_change": true,
+                  "container_id": "tradingview_chart"
+                }
+              `}
+            </Script>
+          </div>
         </div>
       </section>
 
       {/* News Feed */}
       <section className="mx-auto max-w-6xl px-8 py-20 pb-32">
-        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">Latest Bull Catalysts</h2>
+        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
+          Latest Bull Catalysts
+        </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {catalysts.map((item, i) => (
             <div key={i} className="rounded-xl bg-gray-900 p-8 shadow-2xl hover:shadow-red-500/50 transition">
