@@ -53,33 +53,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TSLA Live Chart */}
+      {/* TSLA Live Chart – большой iframe */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <h2 className="mb-10 text-center text-4xl font-bold text-red-500 md:text-6xl">
           TSLA Live Chart
         </h2>
-        <div className="tradingview-widget-container h-[600px] md:h-[800px] w-full rounded-2xl bg-gray-900 shadow-2xl">
-          <div className="tradingview-widget-container__widget h-full"></div>
-          <div className="tradingview-widget-copyright text-xs text-gray-500 text-center py-2">
-            <a href="https://www.tradingview.com/" rel="noopener" target="_blank" className="text-blue-400">
-              Track TSLA on TradingView
-            </a>
-          </div>
-          <script async src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js">
-            {JSON.stringify({
-              autosize: true,
-              symbol: "NASDAQ:TSLA",
-              interval: "D",
-              timezone: "Etc/UTC",
-              theme: "dark",
-              style: "1",
-              locale: "en",
-              backgroundColor: "#000000",
-              gridColor: "#333333",
-              allow_symbol_change: true,
-              calendar: false,
-            })}
-          </script>
+        <div className="w-full rounded-2xl overflow-hidden shadow-2xl" style={{ height: '800px' }}>
+          <iframe
+            src="https://www.tradingview.com/chart/?symbol=NASDAQ:TSLA&theme=Dark"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            allowTransparency="true"
+            scrolling="no"
+            allowFullScreen
+          ></iframe>
         </div>
       </section>
 
