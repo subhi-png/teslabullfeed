@@ -53,18 +53,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live TSLA Chart – большой и адаптивный */}
+      {/* TSLA Live Chart – большой iframe */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <h2 className="mb-10 text-center text-4xl font-bold text-red-500 md:text-6xl">
           TSLA Live Chart
         </h2>
-        <div className="w-full overflow-hidden rounded-2xl bg-gray-900 shadow-2xl" style={{ height: '600px' }}>
+        <div className="w-full rounded-2xl bg-gray-900 shadow-2xl overflow-hidden" style={{ height: '800px' }}>
           <iframe
-            src="https://www.tradingview.com/chart/?symbol=NASDAQ:TSLA&theme=dark"
+            src="https://www.tradingview.com/chart/?symbol=NASDAQ%3ATSLA&theme=dark&style=1&interval=D"
             width="100%"
             height="100%"
             frameBorder="0"
             allowFullScreen
+            title="TSLA Live Chart"
           ></iframe>
         </div>
       </section>
