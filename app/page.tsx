@@ -35,7 +35,7 @@ export default function Home() {
       <section className="relative h-screen w-full">
         <Image
           src="/optimus-hero.jpg"
-          alt="Optimus exiting Cybertruck – the future is here"
+          alt="Optimus exiting Cybertruck"
           fill
           priority
           className="object-cover brightness-50"
@@ -53,20 +53,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TSLA Live Chart – большой iframe */}
+      {/* TSLA Live Chart */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <h2 className="mb-10 text-center text-4xl font-bold text-red-500 md:text-6xl">
           TSLA Live Chart
         </h2>
-        <div className="w-full rounded-2xl bg-gray-900 shadow-2xl overflow-hidden" style={{ height: '800px' }}>
-          <iframe
-            src="https://www.tradingview.com/chart/?symbol=NASDAQ%3ATSLA&theme=dark&style=1&interval=D"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allowFullScreen
-            title="TSLA Live Chart"
-          ></iframe>
+        <div className="tradingview-widget-container h-[600px] md:h-[800px] w-full rounded-2xl bg-gray-900 shadow-2xl">
+          <div className="tradingview-widget-container__widget h-full"></div>
+          <div className="tradingview-widget-copyright text-xs text-gray-500 text-center py-2">
+            <a href="https://www.tradingview.com/" rel="noopener" target="_blank" className="text-blue-400">
+              Track TSLA on TradingView
+            </a>
+          </div>
+          <script async src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js">
+            {JSON.stringify({
+              autosize: true,
+              symbol: "NASDAQ:TSLA",
+              interval: "D",
+              timezone: "Etc/UTC",
+              theme: "dark",
+              style: "1",
+              locale: "en",
+              backgroundColor: "#000000",
+              gridColor: "#333333",
+              allow_symbol_change: true,
+              calendar: false,
+            })}
+          </script>
         </div>
       </section>
 
@@ -77,10 +90,7 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {catalysts.map((item, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:shadow-red-500/50"
-            >
+            <div key={i} className="rounded-2xl bg-gray-900 p-8 shadow-xl hover:shadow-red-500/50 transition">
               <h3 className="mb-4 text-2xl font-bold text-red-400">{item.title}</h3>
               <p className="mb-6 text-lg leading-relaxed">{item.description}</p>
               <p className="text-sm text-gray-400">{item.date}</p>
