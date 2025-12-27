@@ -211,7 +211,7 @@
     updateTSLAPrice();
     setInterval(updateTSLAPrice, 30000);
 
-    // News Feed from Electrek (fixed parsing)
+    // News Feed from Electrek (final fix for titles)
     async function loadTeslaNews() {
       const newsFeed = document.getElementById('news-feed');
       const rssUrl = 'https://electrek.co/feed/';
@@ -226,28 +226,22 @@
 
         newsFeed.innerHTML = '';
         let count = 0;
-        for (const item of items) {
-          if (count >= 10) break;
-          const titleElement = item.querySelector("title");
-          const linkElement = item.querySelector("link");
-          const pubDateElement = item.querySelector("pubDate");
-
-          const title = titleElement ? titleElement.textContent.trim() : 'No title';
-          const link = linkElement ? linkElement.textContent.trim() : '#';
-          const pubDate = pubDateElement ? pubDateElement.textContent : null;
-          const date = pubDate ? new Date(pubDate).toLocaleDateString() : 'Recent';
+        items.forEach(item => {
+          if (count >= 10) return;
+          const title = item.getElementsByTagName("title")[0]?.textContent.trim() || 'Tesla News';
+          const link = item.getElementsByTagName("link")[0]?.textContent.trim() || '#';
+          const pubDate = item.getElementsByTagName("pubDate")[0]?.textContent.trim();
+          const date = pubDate ? new Date(pubDate).toLocaleDateString('en-GB') : 'Recent';
 
           const newsItem = document.createElement('div');
           newsItem.className = 'news-item';
           newsItem.innerHTML = `
-            <div class="news-title">
-              <a href="\( {link}" target="_blank"> \){title}</a>
-            </div>
+            <div class="news-title"><a href="\( {link}" target="_blank"> \){title}</a></div>
             <div class="news-date">${date}</div>
           `;
           newsFeed.appendChild(newsItem);
           count++;
-        }
+        });
       } catch (error) {
         newsFeed.innerHTML = '<div class="news-item" style="text-align:center;color:#aaa;">News temporarily unavailable</div>';
       }
