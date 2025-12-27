@@ -9,7 +9,7 @@ export default function Home() {
       title: "Robotaxi Unsupervised Scaling",
       description: "Fleet expanding in Austin without safety drivers. Regulatory approvals advancing – trillion-dollar ride-hailing network closer than ever.",
       date: "December 2025",
-    }, 
+    },
     {
       title: "FSD v14+ Excellence",
       description: "End-to-end AI delivering smoother rides, outperforming rivals in real-world scenarios. China launch imminent.",
