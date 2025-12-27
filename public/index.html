@@ -76,35 +76,32 @@
       gap: 20px;
     }
     .section-title {
-      font-size: 24px;
+      font-size: 26px;
       color: #e31937;
-      margin-bottom: 10px;
       text-align: center;
-    }
-    .post, .news-item {
-      background: #111;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    .news-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .news-link {
-      color: #e31937;
-      text-decoration: none;
-    }
-    .news-date {
-      font-size: 12px;
-      color: #aaa;
-      margin-top: 8px;
+      margin: 10px 0;
     }
     .timeline-wrapper {
       background: transparent;
       box-shadow: none;
       padding: 0;
+    }
+    .news-item {
+      background: #111;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .news-title a {
+      color: #e31937;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .news-date {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 8px;
     }
     #input-area {
       padding: 10px 12px;
@@ -157,7 +154,6 @@
   </div>
 
   <div id="feed">
-    <!-- Tweets from @elonmusk and @Tesla -->
     <div class="section-title">Tweets Feed</div>
     <div class="timeline-wrapper">
       <a class="twitter-timeline" data-theme="dark" data-height="600" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/elonmusk"></a>
@@ -166,7 +162,6 @@
       <a class="twitter-timeline" data-theme="dark" data-height="600" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/Tesla"></a>
     </div>
 
-    <!-- News Feed from Teslarati RSS -->
     <div class="section-title">News Feed</div>
     <div id="news-feed"></div>
   </div>
@@ -176,21 +171,20 @@
     <button id="send-btn">➤</button>
   </div>
 
-  <!-- Widgets script for Twitter embeds -->
+  <!-- Twitter widgets -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <script>
-    // TSLA Price update
+    // TSLA Price
     const priceEl = document.getElementById('price');
     const changeEl = document.getElementById('change');
 
     async function updateTSLAPrice() {
       try {
-        const proxyUrl = 'https://api.allorigins.win/get?url=';
+        const proxyUrl = 'https://corsproxy.io/?';
         const yahooUrl = 'https://query1.finance.yahoo.com/v8/finance/chart/TSLA?interval=1m&range=1d';
         const response = await fetch(proxyUrl + encodeURIComponent(yahooUrl));
-        const proxyData = await response.json();
-        const data = JSON.parse(proxyData.contents);
+        const data = await response.json();
 
         const quote = data.chart.result[0].meta;
         const currentPrice = quote.regularMarketPrice.toFixed(2);
@@ -217,37 +211,38 @@
     updateTSLAPrice();
     setInterval(updateTSLAPrice, 30000);
 
-    // News Feed from Teslarati RSS
+    // News Feed from Electrek
     async function loadTeslaNews() {
       const newsFeed = document.getElementById('news-feed');
-      const rssUrl = 'https://www.teslarati.com/feed/';
-      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl);
+      const rssUrl = 'https://electrek.co/feed/';
+      const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rssUrl);
 
       try {
         const response = await fetch(proxyUrl);
-        const data = await response.json();
+        const text = await response.text();
         const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, "text/xml");
+        const xml = parser.parseFromString(text, "text/xml");
         const items = xml.querySelectorAll("item");
 
+        newsFeed.innerHTML = '';
         let count = 0;
         items.forEach(item => {
-          if (count >= 10) return; // Только 10 новостей
-          const title = item.querySelector("title").textContent;
-          const link = item.querySelector("link").textContent;
-          const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
+          if (count >= 10) return;
+          const title = item.querySelector("title")?.textContent || 'No title';
+          const link = item.querySelector("link")?.textContent || '#';
+          const pubDate = new Date(item.querySelector("pubDate")?.textContent || Date.now()).toLocaleDateString();
 
           const newsItem = document.createElement('div');
           newsItem.className = 'news-item';
           newsItem.innerHTML = `
-            <div class="news-title"><a href="\( {link}" target="_blank" class="news-link"> \){title}</a></div>
+            <div class="news-title"><a href="\( {link}" target="_blank"> \){title}</a></div>
             <div class="news-date">${pubDate}</div>
           `;
           newsFeed.appendChild(newsItem);
           count++;
         });
       } catch (error) {
-        newsFeed.innerHTML = '<div class="news-item">News loading error</div>';
+        newsFeed.innerHTML = '<div class="news-item" style="text-align:center;">News temporarily unavailable</div>';
       }
     }
 
