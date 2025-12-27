@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white min-h-screen">
-      {/* Hero */}
+      {/* Hero with Optimus */}
       <section className="relative h-screen w-full">
         <Image
           src="/optimus-hero.jpg"
