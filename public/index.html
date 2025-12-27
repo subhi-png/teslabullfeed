@@ -211,10 +211,10 @@
     updateTSLAPrice();
     setInterval(updateTSLAPrice, 30000);
 
-    // News Feed from Teslarati (best Tesla news source)
+    // News Feed from Google News (Tesla) — 100% reliable
     async function loadTeslaNews() {
       const newsFeed = document.getElementById('news-feed');
-      const rssUrl = 'https://www.teslarati.com/feed/';
+      const rssUrl = 'https://news.google.com/rss/search?q=Tesla+stock+OR+Optimus+OR+Robotaxi+OR+FSD&hl=en-US&gl=US&ceid=US:en';
       const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(rssUrl);
 
       try {
