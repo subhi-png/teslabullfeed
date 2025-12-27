@@ -1,1 +1,99 @@
 
+import Image from 'next/image';
+
+export default function Home() {
+  const currentPrice = "475.19"; // Можно позже сделать динамическим
+  const priceChange = "-10.37 (-2.13%)";
+
+  const catalysts = [
+    {
+      title: "Robotaxi Unsupervised Scaling",
+      description: "Fleet expanding in Austin without safety drivers. Regulatory approvals advancing – trillion-dollar ride-hailing network closer than ever.",
+      date: "December 2025",
+    },
+    {
+      title: "FSD v14+ Excellence",
+      description: "End-to-end AI delivering smoother rides, outperforming rivals in real-world scenarios. China launch imminent.",
+      date: "December 2025",
+    },
+    {
+      title: "Optimus Factory Thousands",
+      description: "Humanoid robots actively working in Tesla plants. External sales targeted for 2026 – robotics revolution accelerating.",
+      date: "December 2025",
+    },
+    {
+      title: "Energy Storage Boom",
+      description: ">100% YoY deployment growth, margins beating automotive. Megapack demand surging globally.",
+      date: "December 2025",
+    },
+    {
+      title: "TSLA Bull Momentum",
+      description: "Trading ~$475–485 in buy zone. Analysts raising targets to $500–600+ on autonomy & robotics valuation unlock.",
+      date: "December 27, 2025",
+    },
+  ];
+
+  return (
+    <main className="bg-black text-white min-h-screen">
+      {/* Hero with Optimus */}
+      <section className="relative h-screen w-full">
+        <Image
+          src="/optimus-hero.jpg"
+          alt="Optimus – the future of autonomy and robotics"
+          fill
+          priority
+          className="object-cover brightness-50"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+          <h1 className="mb-6 text-5xl font-bold text-red-500 drop-shadow-2xl md:text-8xl">
+            TeslaBullFeed
+          </h1>
+          <p className="mb-8 text-2xl drop-shadow-lg md:text-4xl">
+            Daily Dose of TSLA Bull Catalysts
+          </p>
+          <p className="text-xl drop-shadow-lg md:text-3xl">
+            🚀 No FUD, Only Moon 🌕
+          </p>
+        </div>
+      </section>
+
+      {/* Live Price */}
+      <section className="bg-gray-900 py-16">
+        <div className="mx-auto max-w-4xl px-8 text-center">
+          <h2 className="mb-6 text-4xl font-bold text-red-500 md:text-6xl">
+            TSLA Live Price
+          </h2>
+          <div className="text-6xl font-bold md:text-8xl">
+            ${currentPrice}
+          </div>
+          <p className="mt-4 text-2xl text-red-400">
+            {priceChange} (today)
+          </p>
+        </div>
+      </section>
+
+      {/* Bull News Feed */}
+      <section className="mx-auto max-w-6xl px-8 py-20 pb-32">
+        <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
+          Bull News Feed
+        </h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {catalysts.map((item, i) => (
+            <div
+              key={i}
+              className="rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:shadow-red-500/50"
+            >
+              <h3 className="mb-4 text-2xl font-bold text-red-400">
+                {item.title}
+              </h3>
+              <p className="mb-6 text-lg leading-relaxed">
+                {item.description}
+              </p>
+              <p className="text-sm text-gray-400">{item.date}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
