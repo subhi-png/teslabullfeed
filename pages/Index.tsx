@@ -28,7 +28,7 @@ export default function Home() {
     {
       title: "TSLA Bull Momentum",
       description: "Trading ~$475–485 in buy zone. Analysts raising targets to $500–600+ on autonomy & robotics valuation unlock.",
-      date: "December 27, 2025",
+      date: "December 28, 2025",
     },
   ];
 
@@ -88,7 +88,9 @@ export default function Home() {
               <p className="mb-6 text-lg leading-relaxed">
                 {item.description}
               </p>
-              <p className="text-sm text-gray-400">{item.date}</p>
+              <p className="text-sm text-gray-400">
+                {item.date}
+              </p>
             </div>
           ))}
         </div>
