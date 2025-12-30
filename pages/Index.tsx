@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Imag from 'next/image';
 
 const currentPrice = "475.19";
 const priceChange = "-10.37 (-2.13%)";
