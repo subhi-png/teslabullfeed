@@ -1,5 +1,5 @@
 import Image from 'next/image';
- 
+
 export default function Home() {
   const currentPrice = "475.19";
   const priceChange = "-10.37 (-2.13%)";
@@ -27,8 +27,8 @@ export default function Home() {
     },
     {
       title: "TSLA Bull Momentum",
-      description: "Trading ~$475–485 in buy zone. Analysts raising targets to $500–600+ on autonomy & robotics valuation unlock.",
-      date: "December 28, 2025",
+      description: "Trading ~$475–485 in buy zone after Christmas highs. Analysts raising targets to $500–600+ on autonomy & robotics.",
+      date: "December 30, 2025",
     },
   ];
 
