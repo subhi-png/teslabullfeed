@@ -1,44 +1,50 @@
 import Image from 'next/image';
+import { Inter } from 'next/font/google';
 
-const currentPrice = "475.19";
-const priceChange = "-10.37 (-2.13%)";
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const currentPrice = "438.07";
+const priceChange = "-11.65 (-2.59%)";
 
 const catalysts = [
   {
-    title: "Robotaxi Unsupervised Scaling",
-    description: "Fleet expanding in Austin without safety drivers. Regulatory approvals advancing – trillion-dollar ride-hailing network closer than ever.",
-    date: "December 2025",
+    title: "Robotaxi Network Expansion",
+    description: "Broader rollout to new cities, paid rides for owners, unsupervised FSD scaling. Trillion-dollar opportunity accelerating.",
+    date: "Throughout 2026",
   },
   {
-    title: "FSD v14+ Excellence",
-    description: "End-to-end AI delivering smoother rides, outperforming rivals in real-world scenarios. China launch imminent.",
-    date: "December 2025",
+    title: "Optimus Production Ramp",
+    description: "Higher-volume factory production starts. In-house deployment + first external sales targeted late 2026/2027.",
+    date: "2026–2027",
   },
   {
-    title: "Optimus Factory Thousands",
-    description: "Humanoid robots actively working in Tesla plants. External sales targeted for 2026 – robotics revolution accelerating.",
-    date: "December 2025",
+    title: "Cybercab Volume Production",
+    description: "Dedicated robotaxi vehicle (Cybercab) hits the roads. Affordable next-gen platform unlocking mass autonomy.",
+    date: "2026",
   },
   {
-    title: "Energy Storage Boom",
-    description: ">100% YoY deployment growth, margins beating automotive. Megapack demand surging globally.",
-    date: "December 2025",
+    title: "Energy Storage Supercycle",
+    description: "Megapack deployments continue explosive growth. Margins beating automotive, becoming major profit driver.",
+    date: "Ongoing 2026",
   },
   {
-    title: "TSLA Bull Momentum",
-    description: "Trading ~$475–485 in buy zone. Analysts raising targets to $500–600+ on autonomy & robotics valuation unlock.",
-    date: "December 31, 2025",
+    title: "Tesla Semi High-Volume Ramp",
+    description: "Electric semi-trucks scale production. New fleets adopting, logistics revolution underway.",
+    date: "2026",
   },
 ];
 
 export default function Home() {
   return (
-    <main className="bg-black text-white min-h-screen">
-      {/* Hero */}
+    <main className={`bg-black text-white min-h-screen ${inter.className}`}>
+      {/* Hero Section */}
       <section className="relative h-screen w-full">
         <Image
           src="/optimus-hero.jpg"
-          alt="Optimus – the future of autonomy and robotics"
+          alt="Tesla Optimus & Cybercab – Autonomy and Robotics Revolution"
           fill
           priority
           className="object-cover brightness-50"
@@ -56,7 +62,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live Price */}
+      {/* Live Price Section */}
       <section className="bg-gray-900 py-16 text-center">
         <h2 className="mb-6 text-4xl font-bold text-red-500 md:text-6xl">
           TSLA Live Price
@@ -65,20 +71,20 @@ export default function Home() {
           ${currentPrice}
         </div>
         <p className="mt-4 text-2xl text-red-400">
-          {priceChange} (today)
+          {priceChange} (as of Jan 5, 2026)
         </p>
       </section>
 
       {/* Bull News Feed */}
       <section className="mx-auto max-w-6xl px-8 py-20 pb-32">
         <h2 className="mb-12 text-center text-4xl font-bold text-red-500 md:text-6xl">
-          Bull News Feed
+          Bull News Feed – 2026 Catalysts
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {catalysts.map((item, i) => (
             <div
               key={i}
-              className="rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:shadow-red-500/50"
+              className="rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:shadow-red-500/50 hover:-translate-y-2"
             >
               <h3 className="mb-4 text-2xl font-bold text-red-400">
                 {item.title}
